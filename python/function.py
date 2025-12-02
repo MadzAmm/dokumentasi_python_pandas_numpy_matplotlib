@@ -171,3 +171,68 @@ test()  # Nilai x di dalam fungsi : 100
 
 # disini tidak bisa panggil variabel x
 print(x)  # Error
+
+
+# GLOBAL VARIABEL
+# ===========================================
+# Variabel yang kita buat di luar functionn, maka bisa digunakan di dalam function.
+# Namun kita tidak bisa mengubah nilai  dari global variabel di dalam function. Jika kita hendak mengubah nilai global variabel maka kita harus mmenggunakan kata kunci "global"  di dalam functionnya.
+
+nama_global = "Tejo"
+
+
+def cetak_nama():
+    print(nama_global)
+
+
+# Tidak bisa merubah nilai dari variabel global, tapi hanya sekedar membuat variabel lokal baru.
+def ubah_nama1():
+    nama_global = (
+        "Hari"  # -----variabel lokal baru bukan pengubah nilai dari variabel global
+    )
+    print(ubah_nama1)  # "Hari"
+
+
+# Nah yang ini bisa merubah nilai dari variabel global nama_global
+def ubah_nama2():
+    global nama_global
+    nama_global = "Rena"
+
+
+cetak_nama()  # "Tejo"
+ubah_nama1()
+cetak_nama()  # "Tejo"
+ubah_nama2()
+cetak_nama()  # "Rena"
+
+
+# PARAMETER DINAMIS
+# ====================================
+# Bisa dengan menambahkan tanda * sebelum parameter untuk  memberi tahu bahwa itu adalah parameter dinamis berupa list
+# Bisa juga dengan menambahkan tanda ** sebelum nama parameter unntuk memberi tahu bahwa itu adalah parameter dinamis berupa dictionary
+
+
+# buat function
+def cetak_list(*list):  # *list parameter dinamis berupa  list
+    for i in list:
+        print(i)
+
+
+# lalu gunakan function
+cetak_list(1, 2, 3, 4, 5)
+# 1
+# 2
+# 3
+# 4
+# 5
+
+
+def cetak_dict(**dict):
+    for key, value in dict.items():
+        print(f"{key}: {value}")
+
+
+cetak_dict(nama="Dea", umur="25", kota="Jakarta")
+# nama: Dea
+# umur: 25
+# kota: Jakarta
